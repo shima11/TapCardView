@@ -6,33 +6,32 @@
 //  Copyright © 2017 jinsei shima. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 enum TapPosition {
+
     case left, right, bottom
 }
 
-protocol Tapable {
-    var state: TapPosition { get }
-    func getPosition() -> TapPosition
+protocol CardViewDelegate: class {
 
+    func tapPosition(type: TapPosition)
 }
 
-final class TapCardView: UIView {
+class TapCardView: UIView {
 
-    var images: [UIImage] = []
-    var scrollView: UIScrollView = UIScrollView()
+    weak var delegate: CardViewDelegate?
 
     override init(frame: CGRect) {
+
         super.init(frame: frame)
 
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture(sender:)))
-        self.addGestureRecognizer(tapGesture)
-
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture(sender:)))
+        addGestureRecognizer(tapGesture)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
+
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -41,22 +40,36 @@ final class TapCardView: UIView {
         if sender.state == .ended {
 
             let tapPoint = sender.location(in: self)
-            let tapPosition = getPosition(point: tapPoint, size: bounds.size)
-            print(tapPosition)
+            let tapPosition = getTapPosition(point: tapPoint, size: bounds.size)
 
             switch tapPosition {
-            case .left, .right:
-                flipCard(type: tapPosition)
+            case .left:
+                delegate?.tapPosition(type: .left)
+            case .right:
+                delegate?.tapPosition(type: .right)
             case .bottom:
-                break
+                delegate?.tapPosition(type: .bottom)
             }
         }
     }
 
-    private func flipCard(type: TapPosition) {
+    func getTapPosition(point: CGPoint, size: CGSize) -> TapPosition {
+
+        if(point.y >= size.height*3/4) {
+            return .bottom
+        }
+        else if(point.x >= size.width/2) {
+            return .right
+        }
+        else {
+            return .left
+        }
+    }
+
+    func flipCard(type: TapPosition) {
 
         if type == .bottom { return }
-        let radius: Float = (type == .left) ? 18 : -18
+        let radius: Float = (type == .left) ? 14 : -14 // degree of rotation, when left end or right end.
         let duration = 0.24
 
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: [], animations: {
@@ -70,23 +83,10 @@ final class TapCardView: UIView {
         }, completion: nil)
     }
 
-    private func degree2radian(d: Float) -> CGFloat {
+    fileprivate func degree2radian(d: Float) -> CGFloat {
 
         let r = Float.pi * d/180
         return CGFloat(r)
     }
-
-    private func getPosition(point: CGPoint, size: CGSize) -> TapPosition {
-
-        if(point.y >= size.height*3/4) {
-            return .bottom
-        }
-        else if(point.x >= size.width/2) {
-            return .right
-        }
-        else {
-            return .left
-        }
-    }
-
 }
+
