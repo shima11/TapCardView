@@ -13,6 +13,8 @@
 		D405EE3A1FF8DA1500D8450A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D405EE381FF8DA1500D8450A /* Main.storyboard */; };
 		D405EE3C1FF8DA1500D8450A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D405EE3B1FF8DA1500D8450A /* Assets.xcassets */; };
 		D405EE3F1FF8DA1500D8450A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D405EE3D1FF8DA1500D8450A /* LaunchScreen.storyboard */; };
+		D405EE451FF8DB5F00D8450A /* TapCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D405EE441FF8DB5F00D8450A /* TapCardView.swift */; };
+		D405EE521FF8DC9A00D8450A /* TapCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D405EE441FF8DB5F00D8450A /* TapCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,7 @@
 		D405EE3B1FF8DA1500D8450A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D405EE3E1FF8DA1500D8450A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D405EE401FF8DA1500D8450A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D405EE441FF8DB5F00D8450A /* TapCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +55,7 @@
 				D405EE251FF8D9E600D8450A /* TapCardView */,
 				D405EE331FF8DA1500D8450A /* Demo */,
 				D405EE241FF8D9E600D8450A /* Products */,
+				D405EE461FF8DBB700D8450A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				D405EE261FF8D9E600D8450A /* TapCardView.h */,
+				D405EE441FF8DB5F00D8450A /* TapCardView.swift */,
 				D405EE271FF8D9E600D8450A /* Info.plist */,
 			);
 			path = TapCardView;
@@ -84,6 +89,13 @@
 				D405EE401FF8DA1500D8450A /* Info.plist */,
 			);
 			path = Demo;
+			sourceTree = "<group>";
+		};
+		D405EE461FF8DBB700D8450A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +159,7 @@
 				TargetAttributes = {
 					D405EE221FF8D9E600D8450A = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					D405EE311FF8DA1500D8450A = {
@@ -199,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D405EE451FF8DB5F00D8450A /* TapCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D405EE521FF8DC9A00D8450A /* TapCardView.swift in Sources */,
 				D405EE371FF8DA1500D8450A /* ViewController.swift in Sources */,
 				D405EE351FF8DA1500D8450A /* AppDelegate.swift in Sources */,
 			);
@@ -349,6 +364,7 @@
 		D405EE2C1FF8D9E600D8450A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -361,6 +377,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.shimaApps.TapCardView;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -369,6 +386,7 @@
 		D405EE2D1FF8D9E600D8450A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

@@ -1,0 +1,6 @@
+framework module TapCardView {
+  umbrella header "TapCardView.h"
+
+  export *
+  module * { export * }
+}
