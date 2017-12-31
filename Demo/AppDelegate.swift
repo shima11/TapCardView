@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+
+//        let bundle = Bundle.main.bundleIdentifier
+//        UserDefaults.standard.removePersistentDomain(forName: bundle!)
+
+        let userDefault = UserDefaults.standard
+        let dict = ["isFirstLaunch": true]
+        userDefault.register(defaults: dict)
+
         return true
     }
 
