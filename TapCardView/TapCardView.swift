@@ -22,6 +22,14 @@ class TapCardView: UIView {
 
     weak var delegate: CardViewDelegate?
 
+    // border of tap position. ratio of width and height.
+    var horizontalBorder: CGFloat = 0.5
+    var verticalBorder: CGFloat = 0.75
+
+    // flip animation settings
+    var flipDegree: Float = 14
+    var flipDuration = 0.24
+
     override init(frame: CGRect) {
 
         super.init(frame: frame)
@@ -55,10 +63,10 @@ class TapCardView: UIView {
 
     func getTapPosition(point: CGPoint, size: CGSize) -> TapPosition {
 
-        if(point.y >= size.height*3/4) {
+        if(point.y >= size.height * verticalBorder) {
             return .bottom
         }
-        else if(point.x >= size.width/2) {
+        else if(point.x >= size.width * horizontalBorder) {
             return .right
         }
         else {
@@ -69,8 +77,10 @@ class TapCardView: UIView {
     func flipCard(type: TapPosition) {
 
         if type == .bottom { return }
-        let radius: Float = (type == .left) ? 14 : -14 // degree of rotation, when left end or right end.
-        let duration = 0.24
+
+        // degree of rotation, when left end or right end.
+        let radius: Float = (type == .left) ? flipDegree : -flipDegree
+        let duration = flipDuration
 
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: [], animations: {
             let transform = CATransform3DIdentity
