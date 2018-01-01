@@ -4,3 +4,8 @@ framework module TapCardView {
   export *
   module * { export * }
 }
+
+module TapCardView.Swift {
+    header "TapCardView-Swift.h"
+    requires objc
+}
