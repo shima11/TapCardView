@@ -22,12 +22,12 @@ open class TapCardView: UIView {
 
     public weak var delegate: CardViewDelegate?
 
-    // border of tap position. ratio of width and height.
+    // border of tap position. ratio of width and height. value is 0.0 to 1.0
     public var horizontalBorder: CGFloat = 0.5
     public var verticalBorder: CGFloat = 0.75
 
     // flip animation settings
-    public var flipDegree: Float = 14
+    public var flipDegree: Float = 12
     public var flipDuration = 0.24
 
     public override init(frame: CGRect) {
@@ -36,6 +36,8 @@ open class TapCardView: UIView {
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture(sender:)))
         addGestureRecognizer(tapGesture)
+
+        layer.isDoubleSided = false
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -84,7 +86,8 @@ open class TapCardView: UIView {
         let duration = flipDuration
 
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: [], animations: {
-            let transform = CATransform3DIdentity
+            var transform = CATransform3DIdentity
+            transform.m34 = 1/1000
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: duration/2, animations: {
                 self.layer.transform = CATransform3DRotate(transform, self.degree2radian(d: radius), 0, 1, 0)
             })
