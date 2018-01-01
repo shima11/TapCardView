@@ -8,29 +8,29 @@
 
 import UIKit
 
-enum TapPosition {
+public enum TapPosition {
 
     case left, right, bottom
 }
 
-protocol CardViewDelegate: class {
+public protocol CardViewDelegate: class {
 
     func tapPosition(type: TapPosition)
 }
 
-class TapCardView: UIView {
+open class TapCardView: UIView {
 
-    weak var delegate: CardViewDelegate?
+    public weak var delegate: CardViewDelegate?
 
     // border of tap position. ratio of width and height.
-    var horizontalBorder: CGFloat = 0.5
-    var verticalBorder: CGFloat = 0.75
+    public var horizontalBorder: CGFloat = 0.5
+    public var verticalBorder: CGFloat = 0.75
 
     // flip animation settings
-    var flipDegree: Float = 14
-    var flipDuration = 0.24
+    public var flipDegree: Float = 14
+    public var flipDuration = 0.24
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
 
         super.init(frame: frame)
 
@@ -38,12 +38,13 @@ class TapCardView: UIView {
         addGestureRecognizer(tapGesture)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
 
         fatalError("init(coder:) has not been implemented")
     }
 
-    @objc func tapGesture(sender: UITapGestureRecognizer) {
+    @objc
+    public func tapGesture(sender: UITapGestureRecognizer) {
 
         if sender.state == .ended {
 
@@ -61,12 +62,12 @@ class TapCardView: UIView {
         }
     }
 
-    func getTapPosition(point: CGPoint, size: CGSize) -> TapPosition {
+    public func getTapPosition(point: CGPoint, size: CGSize) -> TapPosition {
 
-        if(point.y >= size.height * verticalBorder) {
+        if point.y >= size.height * verticalBorder {
             return .bottom
         }
-        else if(point.x >= size.width * horizontalBorder) {
+        else if point.x >= size.width * horizontalBorder {
             return .right
         }
         else {
@@ -74,7 +75,7 @@ class TapCardView: UIView {
         }
     }
 
-    func flipCard(type: TapPosition) {
+    public func flipCard(type: TapPosition) {
 
         if type == .bottom { return }
 
@@ -93,7 +94,7 @@ class TapCardView: UIView {
         }, completion: nil)
     }
 
-    fileprivate func degree2radian(d: Float) -> CGFloat {
+    private func degree2radian(d: Float) -> CGFloat {
 
         let r = Float.pi * d/180
         return CGFloat(r)

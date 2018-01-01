@@ -106,7 +106,11 @@ final class CustomTapCardView: TapCardView {
         let scrollView = UIScrollView(frame: CGRect(origin: .zero, size: bounds.size))
         scrollView.center = center
         scrollView.contentSize = CGSize(width: bounds.width * CGFloat(numberOfPage), height: bounds.height)
-        scrollView.contentInsetAdjustmentBehavior = .never
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        }
         scrollView.isPagingEnabled = true
         scrollView.isScrollEnabled = false
         scrollView.showsVerticalScrollIndicator = true
