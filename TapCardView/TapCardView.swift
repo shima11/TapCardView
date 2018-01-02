@@ -46,7 +46,7 @@ open class TapCardView: UIView {
     }
 
     @objc
-    public func tapGesture(sender: UITapGestureRecognizer) {
+    open func tapGesture(sender: UITapGestureRecognizer) {
 
         if sender.state == .ended {
 
