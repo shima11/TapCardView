@@ -15,7 +15,7 @@ public enum TapPosition {
 
 public protocol CardViewDelegate: class {
 
-    func tapPosition(type: TapPosition)
+    func tapPosition(type: TapPosition, sender: TapCardView)
 }
 
 open class TapCardView: UIView {
@@ -52,7 +52,7 @@ open class TapCardView: UIView {
 
             let tapPoint = sender.location(in: self)
             let tapPosition = getTapPosition(point: tapPoint, size: bounds.size)
-            delegate?.tapPosition(type: tapPosition)
+            delegate?.tapPosition(type: tapPosition, sender: self)
         }
     }
 
