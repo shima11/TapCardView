@@ -71,7 +71,7 @@ class ViewController: UIViewController {
 
 extension ViewController: CardViewDelegate {
 
-    func tapPosition(type: TapPosition) {
+    func tapPosition(type: TapPosition, sender: TapCardView) {
 
         print(type)
 
