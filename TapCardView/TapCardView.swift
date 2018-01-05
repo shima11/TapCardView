@@ -52,15 +52,7 @@ open class TapCardView: UIView {
 
             let tapPoint = sender.location(in: self)
             let tapPosition = getTapPosition(point: tapPoint, size: bounds.size)
-
-            switch tapPosition {
-            case .left:
-                delegate?.tapPosition(type: .left)
-            case .right:
-                delegate?.tapPosition(type: .right)
-            case .bottom:
-                delegate?.tapPosition(type: .bottom)
-            }
+            delegate?.tapPosition(type: tapPosition)
         }
     }
 
