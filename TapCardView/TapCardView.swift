@@ -28,11 +28,23 @@ open class TapCardView: UIView {
 
     // flip animation settings
     public var flipDegree: Float = 12
-    public var flipDuration = 0.24
+    public var flipDuration: TimeInterval = 0.24
+
+    // MARK: Initialize
 
     public override init(frame: CGRect) {
 
         super.init(frame: frame)
+        setup()
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+
+        super.init(coder: aDecoder)
+        setup()
+    }
+
+    private func setup() {
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture(sender:)))
         addGestureRecognizer(tapGesture)
@@ -40,10 +52,7 @@ open class TapCardView: UIView {
         layer.isDoubleSided = false
     }
 
-    public required init?(coder aDecoder: NSCoder) {
-
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: Public function
 
     @objc
     open func tapGesture(sender: UITapGestureRecognizer) {
@@ -88,6 +97,8 @@ open class TapCardView: UIView {
             })
         }, completion: nil)
     }
+
+    // MARK: Private function
 
     private func degree2radian(d: Float) -> CGFloat {
 
