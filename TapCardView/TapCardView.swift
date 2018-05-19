@@ -86,7 +86,7 @@ open class TapCardView: UIView {
         let radius: Float = (type == .left) ? flipDegree : -flipDegree
         let duration = flipDuration
 
-        UIView.animateKeyframes(withDuration: duration, delay: 0, options: [], animations: {
+        UIView.animateKeyframes(withDuration: duration, delay: 0, options: [.allowUserInteraction], animations: {
             var transform = CATransform3DIdentity
             transform.m34 = 1/1000
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: duration/2, animations: {
