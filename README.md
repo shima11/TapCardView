@@ -36,7 +36,7 @@ Then, You need to add `TapCardView.framework` to your project.
 For installing with CocoaPods, add it to your Podfile.
 
 ```
-pod "TapCardView", :git => "https://github.com/shima11/TapCardView.git"
+pod "TapCardView"
 ```
 
 Do this command with terminal.
