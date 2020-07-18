@@ -8,18 +8,23 @@
 
 import UIKit
 
-public enum TapPosition {
-  
-  case left, right, bottom
-}
-
 public protocol CardViewDelegate: class {
   
-  func tapPosition(type: TapPosition, sender: TapCardView)
+  func tapPosition(type: TapCardView.TapPosition, sender: TapCardView)
 }
 
 open class TapCardView: UIView {
-  
+
+  public enum TapPosition {
+    
+    case left, right, bottom
+  }
+
+  public enum FlipDirection {
+    
+    case left, right
+  }
+
   public weak var delegate: CardViewDelegate?
   
   // border of tap position. ratio of width and height. value is 0.0 to 1.0
@@ -78,10 +83,8 @@ open class TapCardView: UIView {
     }
   }
   
-  public func flipCard(type: TapPosition) {
-    
-    if type == .bottom { return }
-    
+  public func flipCard(type: FlipDirection) {
+        
     func degree2radian(d: Float) -> CGFloat {
       
       let r = Float.pi * d/180
@@ -109,4 +112,3 @@ open class TapCardView: UIView {
   }
   
 }
-
